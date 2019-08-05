@@ -1,19 +1,19 @@
 $(document).ready(function () {
 
-	//     var firebaseConfig = {
-	// 		apiKey: "AIzaSyDJaT4u-6CU0K9p4uGZgIK1lwXCaajrdSE",
-	// 		authDomain: "train-times-c56c6.firebaseapp.com",
-	// 		databaseURL: "https://train-times-c56c6.firebaseio.com",
-	// 		projectId: "train-times-c56c6",
-	// 		storageBucket: "",
-	// 		messagingSenderId: "211227622452",
-	// 		appId: "1:211227622452:web:87a2fa9b3fc937c4"
-	// 	};
+	    var firebaseConfig = {
+			apiKey: "AIzaSyDJaT4u-6CU0K9p4uGZgIK1lwXCaajrdSE",
+			authDomain: "train-times-c56c6.firebaseapp.com",
+			databaseURL: "https://train-times-c56c6.firebaseio.com",
+			projectId: "train-times-c56c6",
+			storageBucket: "",
+			messagingSenderId: "211227622452",
+			appId: "1:211227622452:web:87a2fa9b3fc937c4"
+		};
 
 
-	// 	firebase.initializeApp(firebaseConfig);
+		firebase.initializeApp(firebaseConfig);
 
-	//     var database = firebase.database();
+	    var database = firebase.database();
 
 	$(".submitInput").on("click", function (event) {
 		// console.log("this works");
