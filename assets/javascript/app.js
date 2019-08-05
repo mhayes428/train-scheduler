@@ -1,4 +1,4 @@
-var firebaseConfig = {
+var Config = {
     apiKey: "AIzaSyB9MjSaJ946dGXCU3jMjtMhdg2eutaXDlk",
     authDomain: "train-times-bf1c2.firebaseapp.com",
     databaseURL: "https://train-times-bf1c2.firebaseio.com",
@@ -8,13 +8,13 @@ var firebaseConfig = {
     appId: "1:971921388884:web:45c3bf156ec6d31a"
   };
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(Config);
 
 var database = firebase.database();
 
-//collect input from the submit button and store it in specific variables
+
 $(".submitInput").on("click", function (event) {
-    // console.log("this works");
+    console.log("this works");
 
     var nameInput = $("#nameInput").val().trim();
 
@@ -26,7 +26,7 @@ $(".submitInput").on("click", function (event) {
 
     var frequencyInput = $("#freqInput").val().trim();
 
-    //input validation
+    
     if (nameInput != "" &&
         numberInput != "" &&
         destinationInput != "" &&
