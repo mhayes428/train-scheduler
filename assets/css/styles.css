@@ -34,7 +34,7 @@ a {
 }
 
 
-/*Individual IDs*/
+/*IDs*/
 
 #background {
 	width: 100%;
@@ -46,5 +46,29 @@ a {
 	text-align: center;
 }
 
-/*Classes*/
+/*Class*/
+
+.pageWrapper {
+	background-color: #ffffff;
+	padding: 0 0 0 0 !important;
+	border-radius: 0 0 1% 1%;
+}
+
+.myHeader {
+	background-color: #003a5d !important;
+	text-align: center;
+	border-radius: 0 0 50% 50% !important;
+}
+
+.panel {
+	border-color: #003a5d !important;
+}
+
+.panel-heading {
+	background-color: #003a5d !important;
+}
+
+.submitInput {
+	background-color: #557a91 !important;
+}
 
