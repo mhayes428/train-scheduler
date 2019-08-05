@@ -55,20 +55,20 @@ a {
 }
 
 .myHeader {
-	background-color: #003a5d !important;
+	background-color: #557a91 !important;
 	text-align: center;
 	border-radius: 0 0 50% 50% !important;
 }
 
 .panel {
-	border-color: #003a5d !important;
+	border-color: #557a91 !important;
 }
 
 .panel-heading {
-	background-color: #003a5d !important;
+	background-color: #557a91 !important;
 }
 
 .submitInput {
-	background-color: #557a91 !important;
+	background-color: darkolivegreen !important;
 }
 
