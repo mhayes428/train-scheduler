@@ -1,13 +1,13 @@
 $(document).ready(function () {
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyB9MjSaJ946dGXCU3jMjtMhdg2eutaXDlk",
-        authDomain: "train-times-bf1c2.firebaseapp.com",
-        databaseURL: "https://train-times-bf1c2.firebaseio.com",
-        projectId: "train-times-bf1c2",
-        storageBucket: "train-times-bf1c2.appspot.com",
-        messagingSenderId: "971921388884",
-        appId: "1:971921388884:web:45c3bf156ec6d31a"
+    // var firebaseConfig = {
+    //     apiKey: "AIzaSyB9MjSaJ946dGXCU3jMjtMhdg2eutaXDlk",
+    //     authDomain: "train-times-bf1c2.firebaseapp.com",
+    //     databaseURL: "https://train-times-bf1c2.firebaseio.com",
+    //     projectId: "train-times-bf1c2",
+    //     storageBucket: "train-times-bf1c2.appspot.com",
+    //     messagingSenderId: "971921388884",
+    //     appId: "1:971921388884:web:45c3bf156ec6d31a"
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -48,7 +48,6 @@ $(document).ready(function () {
 				$("input").val("");
 				return false;
 			}
-
 			//console.log(database);
 
 			$("input").val("");
@@ -68,7 +67,7 @@ $(document).ready(function () {
 
 		var frequency = parseInt(frequency);
 		var currentTime = moment();
-			console.log("Current time: " + moment().format("HHmm"));
+			//console.log("Current time: " + moment().format("HHmm"));
 
 		var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
 			//console.log("DATE CONVERTED: " + dateConvert);
@@ -78,7 +77,7 @@ $(document).ready(function () {
 
 		var timeConvert = moment(trainTime, "HHmm").subtract(1, "years");
 		var timeDifference = moment().diff(moment(timeConvert), "minutes");
-			console.log("Difference in time: " + timeDifference);
+			//console.log("Difference in time: " + timeDifference);
 
 		var timeRemaining = timeDifference % frequency;
 			//console.log("Time remaining: " + timeRemaining);
@@ -87,7 +86,7 @@ $(document).ready(function () {
 			//console.log("Minutes until next train: " + timeAway);
 		
 		var nextArrival = moment().add(timeAway, "minutes");
-		//console.log("Arrival time: " + moment(nextArrival).format("HHmm"));
+			//console.log("Arrival time: " + moment(nextArrival).format("HHmm"));
 
 		var arrivalDisplay = moment(nextArrival).format("HHmm");
 

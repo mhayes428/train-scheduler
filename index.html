@@ -5,31 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="./assets/css/styles.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script>
-    <script src="./assets/javascript/app.js"></script>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">   
+    
     <title>Train Times</title>
 </head>
 
 <body>
     <div class="container pageWrapper">
 
-        <!-- Header Div -->
+
         <header>
             <div class="container">
                 <div class="jumbotron myHeader">
@@ -44,87 +31,102 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                    <!-- <img src="./assets/images/" id="background" class="img-rounded"></div> -->
-
-            </div>
-            <div class="row pageRow">
+                </div>
+                <div class="row pageRow">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 scheduleBoard">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <h4>Train Schedule</h4>
                             </div>
                             <div class="panel-body">
-                                    <table class="table table-hover table-responsive" id="boardTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Train Name</th>
-                                                <th>Train Number</th>
-                                                <th>Destination</th>
-                                                <th>Frequency (in mins.)</th>
-                                                <th>Next Arrival (HHMM)</th>
-                                                <th>Minutes Away</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="boardText">
-                                        </tbody>
-                                    </table>
-                                </div>   
-                            </div>   
-                        </div>
-
-                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <h4>Add Train</h4>
-                                    </div>
-                                    <div class="panel-body">
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="trainName">Train Name</label>
-                                                <input type="text" class="formControl" id="nameInput" placeholder="Enter a Train">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="trainNumber">Train Number</label>
-                                                <input type="number" class="formControl" id="numberInput" placeholder="Enter a Train ID Number">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="destForm">Destination</label>
-                                                <input type="text" class="formControl" id="destInput" placeholder="City, State">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="firstTrain">First Train Time (HHMM 24 Hour Format)</label>
-                                                <input type="number" class="formControl" id="timeInput" placeholder="eg. 1430" onkeyup="if(this.value > 2400){this.value=''; alert('Enter a valid time between 0000 and 2400');}">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="freqForm">Frequency (minutes)</label>
-                                                <input type="number" class="formControl" id="freqInput" placeholder="eg. 30 minutes">
-                                            </div>
-                                        </form>            
-                                        <button class="btn btn-primary submitInput">
-                                            Submit
-                                        </button>
-                                        <button class="btn btn-secondary resetInput">
-                                            Reset
-                                        </button>
-                                    </div>
-                                </div>            
-                            </div>            
-                        </div>	            
-                    </div>
-                </div>
-
-                <footer>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 myFooter">
-                                    <a href="https://github.com/mhayes428" target="_blank"><(^^<) <( ^^ )> (>^^)></a>
-                                </div>
+                                <table class="table table-hover table-responsive" id="boardTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Train Name</th>
+                                            <th>Train Number</th>
+                                            <th>Destination</th>
+                                            <th>Frequency (mins.)</th>
+                                            <th>Next Arrival (HHMM)</th>
+                                            <th>Minutes Away</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="boardText">
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </footer>
+                    </div>
 
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4>Add Train</h4>
+                            </div>
+                            <div class="panel-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="trainName">Train Name</label>
+                                        <input type="text" class="formControl" id="nameInput"
+                                            placeholder="Enter a Train">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="trainNumber">Train Number</label>
+                                        <input type="number" class="formControl" id="numberInput"
+                                            placeholder="Enter a Train ID Number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="destForm">Destination</label>
+                                        <input type="text" class="formControl" id="destInput" placeholder="City, State">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstTrain">First Train Time (HHMM 24 Hour Format)</label>
+                                        <input type="number" class="formControl" id="timeInput" placeholder="eg. 1430"
+                                            onkeyup="if(this.value > 2400){this.value=''; alert('Enter a valid time between 0000 and 2400');}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="freqForm">Frequency (minutes)</label>
+                                        <input type="number" class="formControl" id="freqInput"
+                                            placeholder="eg. 30 minutes">
+                                    </div>
+                                </form>
+                                <button class="btn btn-primary submitInput">
+                                    Submit
+                                </button>
+                                <button class="btn btn-secondary resetInput">
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 myFooter">
+                        <a href="https://github.com/mhayes428" target="_blank">
+                            <(^^<) <( ^^ )> (>^^)>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script>
+        <script src="./assets/javascript/app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+        <script src="/__/firebase/init.js"></script>
 </body>
 
 </html>
