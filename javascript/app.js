@@ -11,4 +11,15 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+$(".submitInput").on("click", function (event) {
+    // console.log("this works");
 
+        var nameInput = $("#nameInput").val().trim();
+
+        var numberInput = $("#numberInput").val().trim();
+
+        var destinationInput = $("#destInput").val().trim();
+
+        var timeInput = $("#timeInput").val().trim();
+
+        var frequencyInput = $("#freqInput").val().trim();
