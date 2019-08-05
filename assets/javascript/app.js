@@ -5,8 +5,8 @@ var firebaseConfig = {
     projectId: "train-scheduler-5bc53",
     storageBucket: "",
     messagingSenderId: "529107276591",
-    appId: "1:529107276591:web:893d4d6fcfaa68a5"
-};
+    appId: "1:529107276591:web:09f2e5bf5f683fee"
+  };
 
 firebase.initializeApp(firebaseConfig);
 
