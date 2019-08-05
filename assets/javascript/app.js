@@ -12,6 +12,7 @@ $(document).ready(function () {
 	  
 	  firebase.initializeApp(firebaseConfig);
 
+	  var database = firebase.database
 	    
 	$(".submitInput").on("click", function (event) {
 		console.log("this works");
@@ -67,6 +68,7 @@ $(document).ready(function () {
 
 		var frequency = parseInt(frequency);
 		var currentTime = moment();
+		
 
 		var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
 
