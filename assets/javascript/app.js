@@ -17,23 +17,19 @@ $(".submitInput").on("click", function (event) {
     // console.log("this works");
 
     var nameInput = $("#nameInput").val().trim();
-
     var numberInput = $("#numberInput").val().trim();
-
     var destinationInput = $("#destInput").val().trim();
-
     var timeInput = $("#timeInput").val().trim();
-
     var frequencyInput = $("#freqInput").val().trim();
 
-    //input validation
+    
     if (nameInput != "" &&
         numberInput != "" &&
         destinationInput != "" &&
         timeInput.length === 4 &&
         frequencyInput != "") {
 
-        //use the collected input (above) and port it to firebase db
+        
         database.ref().push({
             name: nameInput,
             number: numberInput,
@@ -63,7 +59,7 @@ database.ref().on("child_added", function (childSnapshot) {
     var frequency = childSnapshot.val().frequency;
     console.log(name, number, destination, time, frequency);
 
-    
+
     var frequency = parseInt(frequency);
     var currentTime = moment();
     console.log(currentTime + moment().format("HHmm"));
@@ -84,13 +80,13 @@ database.ref().on("child_added", function (childSnapshot) {
 
     var timeAway = frequency - timeRemaining;
     console.log("Minutes until next train: " + timeAway);
-    
+
     var nextArrival = moment().add(timeAway, "minutes");
 
 
     var arrivalDisplay = moment(nextArrival).format("HHmm");
 
-    //append data to table
+    
     $("#boardText").append(
         "<tr><td id='nameDisplay'>" + childSnapshot.val().name +
         "<td id='numberDisplay'>" + childSnapshot.val().number +
@@ -109,4 +105,3 @@ $(".resetInput").on("click", function (event) {
 
 
 setInterval("window.location.reload()", 60000);
-});
