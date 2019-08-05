@@ -9,22 +9,22 @@ $(document).ready(function () {
 		messagingSenderId: "211227622452",
 		appId: "1:211227622452:web:c8b9bd83d9e372d4"
 	  };
-	  // Initialize Firebase
+	  
 	  firebase.initializeApp(firebaseConfig);
 
 	    
 	$(".submitInput").on("click", function (event) {
-		// console.log("this works");
+		console.log("this works");
 
-		var nameInput = $("#nameInput").val().trim();
+		nameInput = $("#nameInput").val().trim();
 
-		var numberInput = $("#numberInput").val().trim();
+		numberInput = $("#numberInput").val().trim();
 
-		var destinationInput = $("#destInput").val().trim();
+		destinationInput = $("#destInput").val().trim();
 
-		var timeInput = $("#timeInput").val().trim();
+		timeInput = $("#timeInput").val().trim();
 
-		var frequencyInput = $("#freqInput").val().trim();
+		frequencyInput = $("#freqInput").val().trim();
 
 
 		if (nameInput = "" &&
@@ -34,7 +34,7 @@ $(document).ready(function () {
 			frequencyInput == "") {
 
 
-			database.ref().push({
+			data.ref().push({
 				name: nameInput,
 				number: numberInput,
 				destination: destinationInput,
@@ -47,45 +47,40 @@ $(document).ready(function () {
 			$("input").val("");
 			return false;
 		}
-		//console.log(database);
+		console.log(database);
 
 		$("input").val("");
 
 	});
 
 
-	database.ref().on("child_added", function (childSnapshot) {
+	data.ref().on("child_added", function (childSnapshot) {
 		// console.log(childSnapshot.val());
+		
 
 		var name = childSnapshot.val().name;
 		var number = childSnapshot.val().number;
 		var destination = childSnapshot.val().destination;
 		var time = childSnapshot.val().time;
 		var frequency = childSnapshot.val().frequency;
-		//console.log(name, number, destination, time, frequency);
+			console.log(name, number, destination, time, frequency);
 
 		var frequency = parseInt(frequency);
 		var currentTime = moment();
-		//console.log(currentTime + moment().format("HHmm"));
 
 		var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
-		//console.log("DATE CONVERTED: " + dateConvert);
 
 		var trainTime = moment(dateConvert).format("HHmm");
-		//console.log("Train time : " + trainTime);
 
 		var timeConvert = moment(trainTime, "HHmm").subtract(1, "years");
+
 		var timeDifference = moment().diff(moment(timeConvert), "minutes");
-		//console.log("Difference in time: " + timeDifference);
 
 		var timeRemaining = timeDifference % frequency;
-		//console.log("Time remaining: " + timeRemaining);
 
 		var timeAway = frequency - timeRemaining;
-		//console.log("Minutes until next train: " + timeAway);
 
 		var nextArrival = moment().add(timeAway, "minutes");
-		//console.log("Arrival time: " + moment(nextArrival).format("HHmm"));
 
 		var arrivalDisplay = moment(nextArrival).format("HHmm");
 
@@ -97,8 +92,8 @@ $(document).ready(function () {
 			"<td id='frequencyDisplay'>" + childSnapshot.val().frequency +
 			"<td id='arrivalDisplay'>" + arrivalDisplay +
 			"<td id='awayDisplay'>" + timeAway + " minutes until arrival" + "</td></tr>");
-		// console.log(arrivalDisplay);
-		// console.log(timeAway);
+			console.log(arrivalDisplay);
+			console.log(timeAway);
 	});
 
 
