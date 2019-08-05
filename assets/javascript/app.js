@@ -61,36 +61,36 @@ database.ref().on("child_added", function (childSnapshot) {
     var destination = childSnapshot.val().destination;
     var time = childSnapshot.val().time;
     var frequency = childSnapshot.val().frequency;
-    // console.log(name, number, destination, time, frequency);
+    console.log(name, number, destination, time, frequency);
 
 
     var frequency = parseInt(frequency);
     var currentTime = moment();
-    //console.log("Current time: " + moment().format("HHmm"));
+    console.log("Current time: " + moment().format("HHmm"));
 
 
     var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
-    //console.log("DATE CONVERTED: " + dateConvert);
+    console.log("DATE CONVERTED: " + dateConvert);
 
     var trainTime = moment(dateConvert).format("HHmm");
-    //console.log("Train time : " + trainTime);
+    console.log("Train time : " + trainTime);
 
     var timeConvert = moment(trainTime, "HHmm").subtract(1, "years");
     var timeDifference = moment().diff(moment(timeConvert), "minutes");
-    //console.log("Difference in time: " + timeDifference);
+    console.log("Difference in time: " + timeDifference);
 
     var timeRemaining = timeDifference % frequency;
-    //console.log("Time remaining: " + timeRemaining);
+    console.log("Time remaining: " + timeRemaining);
 
     var timeAway = frequency - timeRemaining;
-    //console.log("Minutes until next train: " + timeAway);
+    console.log("Minutes until next train: " + timeAway);
     
     var nextArrival = moment().add(timeAway, "minutes");
 
 
     var arrivalDisplay = moment(nextArrival).format("HHmm");
-    //append data to table
 
+    //append data to table
     $("#boardText").append(
         "<tr><td id='nameDisplay'>" + childSnapshot.val().name +
         "<td id='numberDisplay'>" + childSnapshot.val().number +
