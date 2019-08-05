@@ -11,6 +11,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+
 $(".submitInput").on("click", function (event) {
     // console.log("this works");
 
