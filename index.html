@@ -14,63 +14,101 @@
 </head>
 
 <body>
-    <div class="container my-4">
-        <div class="jumbotron text-center">
-            <h1 class="display-3">ALL ABOOOAAARRDD!!!!</h1>
-            <p class="lead">Welcome to the Pain Train!</p>
-            <hr class="my-4">
-        </div>
+    <div class="container pageWrapper">
 
-        <div class="card">
-            <div class="card-header text-center">
-                Train Times
+        <!-- Header Div -->
+        <header>
+            <div class="container">
+                <div class="jumbotron myHeader">
+                    <h1>All Aboard the Pain Train!</h1>
+                </div>
             </div>
-            <div class="card-body">
+        </header>
 
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Train</th>
-                            <th scope="col">Destination</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Next Arrival</th>
-                            <th scope="col">Mins away</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-        </div>
-        <br>
-        <div class="card">
-            <div class="card-header text-center">
-                Enter your train info
-            </div>
-            <div class="card-body">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Train Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter train name">
-                    </div>
-                    <div class="form-group">
-                        <label for="destination">Destination</label>
-                        <input type="text" class="form-control" id="destination" placeholder="Enter destination">
-                    </div>
-                    <div class="form-group">
-                        <label for="firstTrainTime">First Train Time (HH:mm - military time)</label>
-                        <input type="number" class="form-control" id="firstTrainTime"
-                            placeholder="Enter first train time">
-                    </div>
-                    <div class="form-group">
-                        <label for="frequency">Frequency (mins)</label>
-                        <input type="number" class="form-control" id="frequency" placeholder="Enter Frequency">
-                    </div>
+        <div class="container bodyContent">
 
-                    <button id="formFill" type="submit" class="btn btn-dark">Submit</button>
-                </form>
+            <div class="row pageRow">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <!-- <img src="./assets/images/" id="background" class="img-rounded"></div> -->
+
             </div>
-        </div>
-    </div>
+            <div class="row pageRow">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 scheduleBoard">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4>Train Schedule</h4>
+                            </div>
+                            <div class="panel-body">
+                                    <table class="table table-hover table-responsive" id="boardTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Train Name</th>
+                                                <th>Train Number</th>
+                                                <th>Destination</th>
+                                                <th>Frequency (in mins.)</th>
+                                                <th>Next Arrival (HHMM)</th>
+                                                <th>Minutes Away</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="boardText">
+                                        </tbody>
+                                    </table>
+                                </div>   
+                            </div>   
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h4>Add Train</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="trainName">Train Name</label>
+                                                <input type="text" class="formControl" id="nameInput" placeholder="Enter a Train">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="trainNumber">Train Number</label>
+                                                <input type="number" class="formControl" id="numberInput" placeholder="Enter a Train ID Number">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="destForm">Destination</label>
+                                                <input type="text" class="formControl" id="destInput" placeholder="City, State">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="firstTrain">First Train Time (HHMM 24 Hour Format)</label>
+                                                <input type="number" class="formControl" id="timeInput" placeholder="eg. 1430" onkeyup="if(this.value > 2400){this.value=''; alert('Enter a valid time between 0000 and 2400');}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="freqForm">Frequency (in mins.)</label>
+                                                <input type="number" class="formControl" id="freqInput" placeholder="eg. 30 minutes">
+                                            </div>
+                                        </form>            
+                                        <button class="btn btn-primary submitInput">
+                                            Submit
+                                        </button>
+                                        <button class="btn btn-secondary resetInput">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </div>            
+                            </div>            
+                        </div>	            
+                    </div>
+                </div>
+
+                <footer>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 myFooter">
+                                    <a href="https://github.com/mhayes428" target="_blank"><(^^<) <( ^^ )> (>^^)></a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

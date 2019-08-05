@@ -13,61 +13,100 @@ firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
 
-const $tName = $('#name');
-const $tDest = $('#destination');
-const $tFirstTime = $('#firstTrainTime');
-const $tFreq = $('#frequency');
-const $submit = $('#formFill');
-const $tbody = $('tbody');
-let trainObj = {};
+$(".submitInput").on("click", function (event) {
+    // console.log("this works");
 
-// Functions
-const getValues = (e) => {
-    e.preventDefault();
+    var nameInput = $("#nameInput").val().trim();
+
+    var numberInput = $("#numberInput").val().trim();
+
+    var destinationInput = $("#destInput").val().trim();
+
+    var timeInput = $("#timeInput").val().trim();
+
+    var frequencyInput = $("#freqInput").val().trim();
+
+    //input validation
+    if (nameInput != "" &&
+        numberInput != "" &&
+        destinationInput != "" &&
+        timeInput.length === 4 &&
+        frequencyInput != "") {
+
+        //use the collected input (above) and port it to firebase db
+        database.ref().push({
+            name: nameInput,
+            number: numberInput,
+            destination: destinationInput,
+            time: timeInput,
+            frequency: frequencyInput,
+        });
+
+    } else {
+        alert("Please enter valid train data");
+        $("input").val("");
+        return false;
+    }
+    console.log(database);
+
+    $("input").val("");
+
+});
+
+database.ref().on("child_added", function (childSnapshot) {
+    console.log(childSnapshot.val());
+
+    var name = childSnapshot.val().name;
+    var number = childSnapshot.val().number;
+    var destination = childSnapshot.val().destination;
+    var time = childSnapshot.val().time;
+    var frequency = childSnapshot.val().frequency;
+    console.log(name, number, destination, time, frequency);
+
     
-    var firstTimeConverted = moment($tFirstTime.val(), "hh:mm").subtract(1, "years");
-    
+    var frequency = parseInt(frequency);
     var currentTime = moment();
-    
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    
-    var tRemainder = diffTime % $tFreq.val();
-   
-    var tMinsTillTrain = $tFreq.val() - tRemainder;
-    
-    var nextTrain = moment(moment().add(tMinsTillTrain, "minutes")).format("hh:mm");
-
-    
-    trainObj.tName = $tName.val();
-    trainObj.tDest = $tDest.val();
-    trainObj.tFreq = $tFreq.val();
-    trainObj.tNextArr = nextTrain;
-    trainObj.tMinsAway = tMinsTillTrain;
-
-    
-    $tName.val('');
-    $tDest.val('');
-    $tFirstTime.val('');
-    $tFreq.val('');
-
-    
-    db.ref().push(trainObj);
-}
+    console.log(currentTime + moment().format("HHmm"));
 
 
-dbRef.on('child_added', (snapshot) => {
-    
-    console.log(snapshot.val());
-    
-    $tbody.append(`
-        <tr>
-            <td>${snapshot.val().tName}</td>
-            <td>${snapshot.val().tDest}</td>
-            <td>${snapshot.val().tFreq}</td>
-            <td>${snapshot.val().tNextArr}</td>
-            <td>${snapshot.val().tMinsAway}</td>
-        </tr>`);
-})
+    var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
+    console.log("DATE CONVERTED: " + dateConvert);
 
-// Event Listener
-$submit.on('click', getValues);
+    var trainTime = moment(dateConvert).format("HHmm");
+    console.log("Train time : " + trainTime);
+
+    var timeConvert = moment(trainTime, "HHmm").subtract(1, "years");
+    var timeDifference = moment().diff(moment(timeConvert), "minutes");
+    console.log("Difference in time: " + timeDifference);
+
+    var timeRemaining = timeDifference % frequency;
+    console.log("Time remaining: " + timeRemaining);
+
+    var timeAway = frequency - timeRemaining;
+    console.log("Minutes until next train: " + timeAway);
+    
+    var nextArrival = moment().add(timeAway, "minutes");
+
+
+    var arrivalDisplay = moment(nextArrival).format("HHmm");
+
+    //append data to table
+    $("#boardText").append(
+        "<tr><td id='nameDisplay'>" + childSnapshot.val().name +
+        "<td id='numberDisplay'>" + childSnapshot.val().number +
+        "<td id='destinationDisplay'>" + childSnapshot.val().destination +
+        "<td id='frequencyDisplay'>" + childSnapshot.val().frequency +
+        "<td id='arrivalDisplay'>" + arrivalDisplay +
+        "<td id='awayDisplay'>" + timeAway + " minutes until arrival" + "</td></tr>");
+    console.log(arrivalDisplay);
+    console.log(timeAway);
+});
+
+
+$(".resetInput").on("click", function (event) {
+    location.reload();
+});
+
+
+setInterval("window.location.reload()", 60000);
+});
