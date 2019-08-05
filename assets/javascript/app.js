@@ -1,11 +1,12 @@
-// var config = {
-//     apiKey: "AIzaSyC1zUvc5K6NJXFxwm74405gegKYfPSNT-4",
-//     authDomain: "train-schedule-db.firebaseapp.com",
-//     databaseURL: "https://train-schedule-db.firebaseio.com",
-//     projectId: "train-schedule-db",
-//     storageBucket: "train-schedule-db.appspot.com",
-//     messagingSenderId: "60174437847"
-// };
+var firebaseConfig = {
+    apiKey: "AIzaSyCK0Glq3HNqNUwgxDTHIBz1DhwKw1gR9VY",
+    authDomain: "train-scheduler-5bc53.firebaseapp.com",
+    databaseURL: "https://train-scheduler-5bc53.firebaseio.com",
+    projectId: "train-scheduler-5bc53",
+    storageBucket: "",
+    messagingSenderId: "529107276591",
+    appId: "1:529107276591:web:893d4d6fcfaa68a5"
+  };
 
 firebase.initializeApp(config);
 
@@ -44,7 +45,6 @@ $(".submitInput").on("click", function (event) {
         $("input").val("");
         return false;
     }
-
     //console.log(database);
 
     $("input").val("");
@@ -65,31 +65,30 @@ database.ref().on("child_added", function (childSnapshot) {
     console.log("Current time: " + moment().format("HHmm"));
     //console.log("Train time : " + trainTime);
 
-		
-		var timeConvert = moment(trainTime, "HHmm").subtract(1, "years");
-		var timeDifference = moment().diff(moment(timeConvert), "minutes");
-		//console.log("Difference in time: " + timeDifference);
+
+    var timeConvert = moment(trainTime, "HHmm").subtract(1, "years");
+    var timeDifference = moment().diff(moment(timeConvert), "minutes");
+    //console.log("Difference in time: " + timeDifference);
 
     var timeRemaining = timeDifference % frequency;
 
     var timeAway = frequency - timeRemaining;
+    //console.log("Minutes until next train: " + timeAway);
 
-		//console.log("Minutes until next train: " + timeAway);
+    //next train arrival
+    var nextArrival = moment().add(timeAway, "minutes");
+    //console.log("Arrival time: " + moment(nextArrival).format("HHmm"));
 
-		//next train arrival
-		var nextArrival = moment().add(timeAway, "minutes");
-		//console.log("Arrival time: " + moment(nextArrival).format("HHmm"));
+    var arrivalDisplay = moment(nextArrival).format("HHmm");
 
-		var arrivalDisplay = moment(nextArrival).format("HHmm");
-
-	//append the data to the table
-	$("#boardText").append(
-		"<tr><td id='nameDisplay'>" + childSnapshot.val().name + 
-		"<td id='numberDisplay'>" + childSnapshot.val().number + 
-		"<td id='destinationDisplay'>" + childSnapshot.val().destination + 
-		"<td id='frequencyDisplay'>" + childSnapshot.val().frequency +
-		"<td id='arrivalDisplay'>" + arrivalDisplay + 
-		"<td id='awayDisplay'>" + timeAway + " minutes until arrival" + "</td></tr>");
-		// console.log(arrivalDisplay);
-		// console.log(timeAway);
-	});
+    //append the data to the table
+    $("#boardText").append(
+        "<tr><td id='nameDisplay'>" + childSnapshot.val().name +
+        "<td id='numberDisplay'>" + childSnapshot.val().number +
+        "<td id='destinationDisplay'>" + childSnapshot.val().destination +
+        "<td id='frequencyDisplay'>" + childSnapshot.val().frequency +
+        "<td id='arrivalDisplay'>" + arrivalDisplay +
+        "<td id='awayDisplay'>" + timeAway + " minutes until arrival" + "</td></tr>");
+    // console.log(arrivalDisplay);
+    // console.log(timeAway);
+});
