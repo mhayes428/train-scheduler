@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 var firebaseConfig = {
     apiKey: "AIzaSyB9MjSaJ946dGXCU3jMjtMhdg2eutaXDlk",
     authDomain: "train-times-bf1c2.firebaseapp.com",
@@ -14,7 +16,7 @@ var database = firebase.database();
 
 
 $(".submitInput").on("click", function (event) {
-    // console.log("this works");
+    console.log("this works");
 
     var nameInput = $("#nameInput").val().trim();
     var numberInput = $("#numberInput").val().trim();
