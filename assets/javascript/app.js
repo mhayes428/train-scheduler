@@ -11,9 +11,8 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-
 $(".submitInput").on("click", function (event) {
-    // console.log("this works");
+    console.log("this works");
 
     var nameInput = $("#nameInput").val().trim();
 
