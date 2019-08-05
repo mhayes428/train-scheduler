@@ -47,14 +47,14 @@ $(".submitInput").on("click", function (event) {
         $("input").val("");
         return false;
     }
-    //console.log(database);
+    console.log(database);
 
     $("input").val("");
 
 });
 
 database.ref().on("child_added", function (childSnapshot) {
-    // console.log(childSnapshot.val());
+    console.log(childSnapshot.val());
 
     var name = childSnapshot.val().name;
     var number = childSnapshot.val().number;
@@ -63,10 +63,10 @@ database.ref().on("child_added", function (childSnapshot) {
     var frequency = childSnapshot.val().frequency;
     console.log(name, number, destination, time, frequency);
 
-
+    
     var frequency = parseInt(frequency);
     var currentTime = moment();
-    console.log("Current time: " + moment().format("HHmm"));
+    console.log(currentTime + moment().format("HHmm"));
 
 
     var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
@@ -98,8 +98,8 @@ database.ref().on("child_added", function (childSnapshot) {
         "<td id='frequencyDisplay'>" + childSnapshot.val().frequency +
         "<td id='arrivalDisplay'>" + arrivalDisplay +
         "<td id='awayDisplay'>" + timeAway + " minutes until arrival" + "</td></tr>");
-    // console.log(arrivalDisplay);
-    // console.log(timeAway);
+    console.log(arrivalDisplay);
+    console.log(timeAway);
 });
 
 
