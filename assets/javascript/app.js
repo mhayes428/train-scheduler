@@ -63,3 +63,33 @@ database.ref().on("child_added", function (childSnapshot) {
     var frequency = parseInt(frequency);
     var currentTime = moment();
     console.log("Current time: " + moment().format("HHmm"));
+    //console.log("Train time : " + trainTime);
+
+		
+		var timeConvert = moment(trainTime, "HHmm").subtract(1, "years");
+		var timeDifference = moment().diff(moment(timeConvert), "minutes");
+		//console.log("Difference in time: " + timeDifference);
+
+    var timeRemaining = timeDifference % frequency;
+
+    var timeAway = frequency - timeRemaining;
+
+		//console.log("Minutes until next train: " + timeAway);
+
+		//next train arrival
+		var nextArrival = moment().add(timeAway, "minutes");
+		//console.log("Arrival time: " + moment(nextArrival).format("HHmm"));
+
+		var arrivalDisplay = moment(nextArrival).format("HHmm");
+
+	//append the data to the table
+	$("#boardText").append(
+		"<tr><td id='nameDisplay'>" + childSnapshot.val().name + 
+		"<td id='numberDisplay'>" + childSnapshot.val().number + 
+		"<td id='destinationDisplay'>" + childSnapshot.val().destination + 
+		"<td id='frequencyDisplay'>" + childSnapshot.val().frequency +
+		"<td id='arrivalDisplay'>" + arrivalDisplay + 
+		"<td id='awayDisplay'>" + timeAway + " minutes until arrival" + "</td></tr>");
+		// console.log(arrivalDisplay);
+		// console.log(timeAway);
+	});
