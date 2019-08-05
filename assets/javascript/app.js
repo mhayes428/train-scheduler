@@ -38,3 +38,28 @@ $(".submitInput").on("click", function (event) {
             time: timeInput,
             frequency: frequencyInput,
         });
+
+    } else {
+        alert("Please enter valid train data");
+        $("input").val("");
+        return false;
+    }
+
+    //console.log(database);
+
+    $("input").val("");
+
+});
+
+database.ref().on("child_added", function (childSnapshot) {
+    // console.log(childSnapshot.val());
+
+    var name = childSnapshot.val().name;
+    var number = childSnapshot.val().number;
+    var destination = childSnapshot.val().destination;
+    var time = childSnapshot.val().time;
+    var frequency = childSnapshot.val().frequency;
+
+    var frequency = parseInt(frequency);
+    var currentTime = moment();
+    console.log("Current time: " + moment().format("HHmm"));
