@@ -63,11 +63,9 @@ database.ref().on("child_added", function (childSnapshot) {
     var frequency = childSnapshot.val().frequency;
     console.log(name, number, destination, time, frequency);
 
-    
     var frequency = parseInt(frequency);
     var currentTime = moment();
     console.log(currentTime + moment().format("HHmm"));
-
 
     var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
     console.log("DATE CONVERTED: " + dateConvert);
@@ -86,8 +84,6 @@ database.ref().on("child_added", function (childSnapshot) {
     console.log("Minutes until next train: " + timeAway);
     
     var nextArrival = moment().add(timeAway, "minutes");
-
-
     var arrivalDisplay = moment(nextArrival).format("HHmm");
 
     //append data to table
