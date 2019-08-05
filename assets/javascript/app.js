@@ -109,4 +109,3 @@ $(".resetInput").on("click", function (event) {
 
 
 setInterval("window.location.reload()", 60000);
-;
