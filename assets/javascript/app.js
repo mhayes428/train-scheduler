@@ -6,14 +6,15 @@ var firebaseConfig = {
     storageBucket: "",
     messagingSenderId: "529107276591",
     appId: "1:529107276591:web:893d4d6fcfaa68a5"
-  };
+};
 
 firebase.initializeApp(firebaseConfig);
 
 var database = firebase.database();
 
+//collect input from the submit button and store it in specific variables
 $(".submitInput").on("click", function (event) {
-    console.log("this works");
+    // console.log("this works");
 
     var nameInput = $("#nameInput").val().trim();
 
@@ -25,13 +26,14 @@ $(".submitInput").on("click", function (event) {
 
     var frequencyInput = $("#freqInput").val().trim();
 
+    //input validation
     if (nameInput != "" &&
         numberInput != "" &&
         destinationInput != "" &&
         timeInput.length === 4 &&
         frequencyInput != "") {
 
-        //send above data to firebase
+        //use the collected input (above) and port it to firebase db
         database.ref().push({
             name: nameInput,
             number: numberInput,
@@ -59,29 +61,36 @@ database.ref().on("child_added", function (childSnapshot) {
     var destination = childSnapshot.val().destination;
     var time = childSnapshot.val().time;
     var frequency = childSnapshot.val().frequency;
+    // console.log(name, number, destination, time, frequency);
+
 
     var frequency = parseInt(frequency);
     var currentTime = moment();
-    console.log("Current time: " + moment().format("HHmm"));
-    //console.log("Train time : " + trainTime);
+    //console.log("Current time: " + moment().format("HHmm"));
 
+
+    var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
+    //console.log("DATE CONVERTED: " + dateConvert);
+
+    var trainTime = moment(dateConvert).format("HHmm");
+    //console.log("Train time : " + trainTime);
 
     var timeConvert = moment(trainTime, "HHmm").subtract(1, "years");
     var timeDifference = moment().diff(moment(timeConvert), "minutes");
     //console.log("Difference in time: " + timeDifference);
 
     var timeRemaining = timeDifference % frequency;
+    //console.log("Time remaining: " + timeRemaining);
 
     var timeAway = frequency - timeRemaining;
     //console.log("Minutes until next train: " + timeAway);
-
-    //next train arrival
+    
     var nextArrival = moment().add(timeAway, "minutes");
-    //console.log("Arrival time: " + moment(nextArrival).format("HHmm"));
+
 
     var arrivalDisplay = moment(nextArrival).format("HHmm");
+    //append data to table
 
-    //append the data to the table
     $("#boardText").append(
         "<tr><td id='nameDisplay'>" + childSnapshot.val().name +
         "<td id='numberDisplay'>" + childSnapshot.val().number +
@@ -91,4 +100,13 @@ database.ref().on("child_added", function (childSnapshot) {
         "<td id='awayDisplay'>" + timeAway + " minutes until arrival" + "</td></tr>");
     // console.log(arrivalDisplay);
     // console.log(timeAway);
+});
+
+
+$(".resetInput").on("click", function (event) {
+    location.reload();
+});
+
+
+setInterval("window.location.reload()", 60000);
 });
