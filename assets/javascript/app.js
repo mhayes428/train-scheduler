@@ -1,20 +1,18 @@
 $(document).ready(function () {
 
-	    var firebaseConfig = {
-			apiKey: "AIzaSyDJaT4u-6CU0K9p4uGZgIK1lwXCaajrdSE",
-			authDomain: "train-times-c56c6.firebaseapp.com",
-			databaseURL: "https://train-times-c56c6.firebaseio.com",
-			projectId: "train-times-c56c6",
-			storageBucket: "",
-			messagingSenderId: "211227622452",
-			appId: "1:211227622452:web:87a2fa9b3fc937c4"
-		};
+	var firebaseConfig = {
+		apiKey: "AIzaSyDJaT4u-6CU0K9p4uGZgIK1lwXCaajrdSE",
+		authDomain: "train-times-c56c6.firebaseapp.com",
+		databaseURL: "https://train-times-c56c6.firebaseio.com",
+		projectId: "train-times-c56c6",
+		storageBucket: "",
+		messagingSenderId: "211227622452",
+		appId: "1:211227622452:web:c8b9bd83d9e372d4"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
 
-
-		firebase.initializeApp(firebaseConfig);
-
-	    var database = firebase.database();
-
+	    
 	$(".submitInput").on("click", function (event) {
 		// console.log("this works");
 
@@ -64,11 +62,11 @@ $(document).ready(function () {
 		var destination = childSnapshot.val().destination;
 		var time = childSnapshot.val().time;
 		var frequency = childSnapshot.val().frequency;
-		console.log(name, number, destination, time, frequency);
+		//console.log(name, number, destination, time, frequency);
 
 		var frequency = parseInt(frequency);
 		var currentTime = moment();
-		console.log(currentTime + moment().format("HHmm"));
+		//console.log(currentTime + moment().format("HHmm"));
 
 		var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
 		//console.log("DATE CONVERTED: " + dateConvert);
