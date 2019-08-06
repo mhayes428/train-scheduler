@@ -13,10 +13,10 @@ $(document).ready(function () {
 	  firebase.initializeApp(firebaseConfig);
 
 	  var database = firebase.database
-	  currentTime = moment().format();
+	  var currentTime = moment().format();
 	
 	$(".submitInput").on("click", function (event) {
-		console.log("this works");
+		//console.log("this works");
 
 		nameInput = $("#nameInput").val().trim();
 
@@ -27,8 +27,6 @@ $(document).ready(function () {
 		timeInput = $("#timeInput").val().trim();
 
 		frequencyInput = $("#freqInput").val().trim();
-
-
 
 		if (nameInput != "" &&
 			numberInput != "" &&
@@ -53,48 +51,4 @@ $(document).ready(function () {
 		console.log(database);
 
 		$("input").val("");
-
 	});
-
-
-// 	data.ref().on("child_added", function (childSnapshot) {
-// 		// console.log(childSnapshot.val());
-		
-		
-
-// 		 var name = childSnapshot.val().tName;
-// 		 var number = childSnapshot.val().tNumber;
-// 		 var destination = childSnapshot.val().destination;
-// 		 var time = childSnapshot.val().tTime;
-		
-// 		 var frequency = childSnapshot.val().frequency;
-// 		 var frequency = parseInt(frequency);
-		
-// 		 var dateConvert = moment(childSnapshot.val().time, "HHmm").subtract(1, "years");
-// 			//console.log(dateConvert.format("MM/DD/YYYY"));
-// 		 var trainTime = moment(dateConvert).format("HHmm");
-// 		 var timeConvert = moment(trainTime, "HHmm").subtract(1, "years");
-// 		 var timeDifference = moment().diff(moment(timeConvert), "minutes");
-// 		 var timeRemaining = timeDifference % frequency;
-// 		 var timeAway = frequency - timeRemaining;
-// 		 var nextArrival = moment().add(timeAway, "minutes");
-// 		 var arrivalDisplay = moment(nextArrival).format("HHmm");
-
-
-// 		$("#boardText").append(
-// 			"<tr><td id='nameDisplay'>" + childSnapshot.val().name +
-// 			"<td id='numberDisplay'>" + childSnapshot.val().number +
-// 			"<td id='destinationDisplay'>" + childSnapshot.val().destination +
-// 			"<td id='frequencyDisplay'>" + childSnapshot.val().frequency +
-// 			"<td id='arrivalDisplay'>" + arrivalDisplay +
-// 			"<td id='awayDisplay'>" + timeAway + " minutes until arrival" + "</td></tr>");
-// 	});
-
-
-// 	$(".resetInput").on("click", function (event) {
-// 		location.reload();
-// 	});
-
-
-// 	setInterval("window.location.reload()", 60000);
-// });
